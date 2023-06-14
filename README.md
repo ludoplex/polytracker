@@ -1,4 +1,4 @@
-# PolyTracker
+# LudoTracker
 
 <p align="center">
   <img src="logo/polytracker_name.png?raw=true" width="256" title="PolyTracker">
