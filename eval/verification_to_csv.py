@@ -69,7 +69,7 @@ def merge_dicts(paths: List[Path]) -> Dict:
     for p in paths:
         with open(p, "r") as f:
             d = json.load(f)
-            bigd.update(d)
+            bigd |= d
     return bigd
 
 
@@ -84,10 +84,7 @@ def dict_to_csv_row(d: Dict) -> List[Union[str, int, float]]:
     # except that if there is no corresponding key an empty string is produced.
     def get_value(dl, kl):
         k, *rest = kl
-        if rest:
-            return get_value(dl.get(k, {}), rest)
-        else:
-            return dl.get(k, "")
+        return get_value(dl.get(k, {}), rest) if rest else dl.get(k, "")
 
     return [get_value(d, x[1]) for x in HEADERS]
 
